@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>你的實習任務 — Hector & Megu @ Profet AI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --teal: #2AACA2;
+    --teal-light: #e8f7f6;
+    --teal-mid: #b2e0dc;
+    --dark: #1a2a2a;
+    --mid: #4a6060;
+    --light: #f7fafa;
+    --white: #ffffff;
+    --border: #d4ecea;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', 'Microsoft JhengHei', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .topbar { background: var(--teal); height: 4px; }
+
+  .header {
+    background: var(--white);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-dot { width: 10px; height: 10px; background: var(--teal); border-radius: 50%; }
+  .brand-name { font-size: 14px; font-weight: 600; color: var(--teal); }
+
+  .header-badge {
+    background: var(--teal-light);
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  /* WELCOME */
+  .welcome {
+    background: var(--white);
+    padding: 48px 48px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .welcome-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 12px;
+  }
+
+  .welcome h1 {
+    font-size: 28px; font-weight: 700; color: var(--dark);
+    line-height: 1.3; margin-bottom: 16px;
+  }
+
+  .welcome h1 span { color: var(--teal); }
+
+  .welcome-desc {
+    font-size: 15px; color: var(--mid);
+    max-width: 580px; line-height: 1.7; margin-bottom: 24px;
+  }
+
+  .quick-facts { display: flex; gap: 24px; flex-wrap: wrap; }
+
+  .quick-fact { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--mid); }
+
+  .quick-fact .icon {
+    width: 28px; height: 28px; background: var(--teal-light);
+    border-radius: 6px; display: flex; align-items: center;
+    justify-content: center; font-size: 14px;
+  }
+
+  /* MAIN */
+  .main { max-width: 860px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  .section { margin-bottom: 48px; }
+
+  .section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 18px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* MISSION */
+  .mission-box {
+    background: var(--dark); border-radius: 14px;
+    padding: 28px 32px; margin-bottom: 24px;
+    position: relative; overflow: hidden;
+  }
+
+  .mission-box::after {
+    content: '🚀'; position: absolute; right: 28px; top: 50%;
+    transform: translateY(-50%); font-size: 52px; opacity: 0.12;
+  }
+
+  .mission-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--teal-mid); margin-bottom: 10px;
+  }
+
+  .mission-text {
+    font-size: 18px; font-weight: 600; color: white;
+    line-height: 1.5; max-width: 500px;
+  }
+
+  .mission-sub {
+    font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 10px;
+  }
+
+  /* PAIN POINTS */
+  .pain-grid {
+    display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .pain-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-left: 3px solid #e07070; border-radius: 0 10px 10px 0;
+    padding: 14px 16px; display: flex; gap: 10px; align-items: flex-start;
+  }
+
+  .pain-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  .pain-title { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 2px; }
+
+  .pain-desc { font-size: 12px; color: var(--mid); }
+
+  /* BEFORE AFTER */
+  .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 8px; }
+
+  .ba-card {
+    background: var(--teal-light); border-radius: 10px; padding: 16px 18px;
+  }
+
+  .ba-card.after { border: 1px solid var(--teal); }
+
+  .ba-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+  }
+
+  .ba-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+  .ba-list li { display: flex; gap: 8px; font-size: 12px; color: var(--mid); }
+
+  /* FLOW BOX */
+  .flow-box {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px 24px; margin-bottom: 24px;
+  }
+
+  .flow-title { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 14px; }
+
+  .flow-step {
+    display: flex; align-items: flex-start; gap: 12px; margin-bottom: 8px;
+  }
+
+  .flow-num {
+    width: 24px; height: 24px; border-radius: 6px; background: var(--teal);
+    color: white; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .flow-content { flex: 1; padding-bottom: 8px; border-bottom: 1px dashed var(--border); }
+  .flow-step:last-child .flow-content { border-bottom: none; padding-bottom: 0; }
+
+  .flow-ftitle { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .flow-fdesc { font-size: 12px; color: var(--mid); margin-top: 2px; }
+
+  /* ACTION TABLE */
+  .action-table {
+    width: 100%; border-collapse: collapse;
+    background: var(--white); border-radius: 12px;
+    overflow: hidden; border: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+
+  .action-table th {
+    background: var(--teal); color: white;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 11px 14px; text-align: left;
+  }
+
+  .action-table td {
+    padding: 11px 14px; font-size: 13px;
+    color: var(--mid); border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .action-table tr:last-child td { border-bottom: none; }
+  .action-table tr:nth-child(even) td { background: var(--light); }
+  .action-table td:first-child { font-weight: 600; color: var(--dark); white-space: nowrap; }
+
+  .skill-tag {
+    display: inline-block; background: var(--teal-light); color: var(--teal);
+    font-size: 10px; font-weight: 600; padding: 2px 7px;
+    border-radius: 4px; margin: 2px 2px 0 0;
+  }
+
+  /* WEEK LIST */
+  .week-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .week-row {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 20px;
+    display: grid; grid-template-columns: 72px 1fr 200px;
+    gap: 16px; align-items: start;
+    opacity: 0; transform: translateY(8px);
+    transition: all 0.35s ease;
+  }
+
+  .week-row.visible { opacity: 1; transform: translateY(0); }
+
+  .week-row.checkpoint {
+    border-color: var(--teal); background: var(--teal-light);
+  }
+
+  .week-num {
+    font-size: 11px; font-weight: 700; color: var(--teal);
+    background: var(--teal-light); padding: 4px 8px;
+    border-radius: 6px; text-align: center; align-self: start;
+  }
+
+  .week-row.checkpoint .week-num { background: var(--teal); color: white; }
+
+  .week-title { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+
+  .week-tasks { list-style: none; font-size: 12px; color: var(--mid); }
+  .week-tasks li { padding: 2px 0; }
+  .week-tasks li::before { content: '· '; color: var(--teal); font-weight: 700; }
+
+  .week-report {
+    font-size: 12px; color: var(--mid);
+    background: var(--teal-light); border-radius: 8px;
+    padding: 10px 12px; align-self: start;
+  }
+
+  .week-report strong {
+    color: var(--teal); display: block; font-size: 10px;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px;
+  }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+
+  .tip-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px; text-align: center;
+  }
+
+  .tip-emoji { font-size: 26px; margin-bottom: 10px; }
+  .tip-title { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .tip-desc { font-size: 12px; color: var(--mid); line-height: 1.5; }
+
+  /* CTA */
+  .cta-box {
+    background: linear-gradient(135deg, var(--teal) 0%, #1d8a81 100%);
+    border-radius: 14px; padding: 32px; text-align: center; color: white;
+  }
+
+  .cta-box h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .cta-box p { font-size: 13px; opacity: 0.85; margin-bottom: 20px; }
+
+  .cta-box .contact {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
+    color: white; font-size: 13px; font-weight: 500;
+    padding: 10px 20px; border-radius: 8px;
+  }
+
+  @media (max-width: 700px) {
+    .header, .welcome, .main { padding-left: 20px; padding-right: 20px; }
+    .pain-grid, .ba-grid, .tips-grid { grid-template-columns: 1fr; }
+    .week-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<div class="header">
+  <div class="brand">
+    <div class="brand-dot"></div>
+    <div class="brand-name">PROFET AI ／ CoE</div>
+  </div>
+  <div class="header-badge">2026 暑期實習任務說明</div>
+</div>
+
+<div class="welcome">
+  <div class="welcome-eyebrow">Welcome, Hector & Megu 👋</div>
+  <h1>你們這個暑假要做的事<br>真的<span>對我們有用</span></h1>
+  <p class="welcome-desc">
+    這不是掃描文件或整理資料的實習。你們要做的是一套真正會被 CoE 拿來用的工具——讓我們每次開完會不用再手動整理一大堆東西。
+  </p>
+  <div class="quick-facts">
+    <div class="quick-fact"><div class="icon">📅</div>8 週，每週 3 天</div>
+    <div class="quick-fact"><div class="icon">🛠️</div>使用 Profet AI Studio (AIS)</div>
+    <div class="quick-fact"><div class="icon">🎤</div>第 8 週向 CEO 發表</div>
+    <div class="quick-fact"><div class="icon">👤</div>督導：Sophie Chen</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 任務說明 -->
+  <div class="section">
+    <div class="section-label">你們的任務</div>
+
+    <div class="mission-box">
+      <div class="mission-label">Mission</div>
+      <div class="mission-text">用 AIS Agent 把「開完會之後要做的所有事」變成半自動</div>
+      <div class="mission-sub">第一步先做案例分享會，做完後這套架構要能套用到所有分享型會議</div>
+    </div>
+
+    <!-- 現在的痛點 -->
+    <p style="font-size:14px; font-weight:600; color:var(--dark); margin-bottom:12px;">目前每次開完會，Sophie 要手動做這些事 👇</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-icon">🎥</div>
+        <div>
+          <div class="pain-title">手動整理會議摘要</div>
+          <div class="pain-desc">看完錄影，自己把重點寫出來，要花 30–60 分鐘</div>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📝</div>
+        <div>
+          <div class="pain-title">手動出內容考題</div>
+          <div class="pain-desc">根據分享內容設計問題，確認聽眾有沒有吸收</div>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">✉️</div>
+        <div>
+          <div class="pain-title">手動寫會後信件</div>
+          <div class="pain-desc">把摘要＋錄影連結＋問卷連結＋考試連結整合成一封信</div>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">📊</div>
+        <div>
+          <div class="pain-title">人工評業務表單（案例分享會）</div>
+          <div class="pain-desc">業務填完後，逐份人工看、給分、判燈號（綠／黃／紅）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Before / After -->
+    <p style="font-size:14px; font-weight:600; color:var(--dark); margin-bottom:12px;">你們做完之後，流程要變成這樣 👇</p>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-label">❌ Before（現在）</div>
+        <ul class="ba-list">
+          <li><span style="color:#e07070;">✗</span> 每次開完會都要花大量時間手動處理</li>
+          <li><span style="color:#e07070;">✗</span> 評業務表單靠人工判斷，不一致</li>
+          <li><span style="color:#e07070;">✗</span> 知識停留在當天，沒有系統性沉澱</li>
+          <li><span style="color:#e07070;">✗</span> 不同會議各自處理，沒有通用流程</li>
+        </ul>
+      </div>
+      <div class="ba-card after">
+        <div class="ba-label">✅ After（你們做完）</div>
+        <ul class="ba-list">
+          <li><span style="color:var(--teal);">✓</span> 輸入錄影，Agent 自動產出摘要草稿</li>
+          <li><span style="color:var(--teal);">✓</span> Agent 自動依內容出考題</li>
+          <li><span style="color:var(--teal);">✓</span> 信件草稿自動整合，Sophie 確認後發送</li>
+          <li><span style="color:var(--teal);">✓</span> 業務表單自動評分＋燈號即時輸出</li>
+          <li><span style="color:var(--teal);">✓</span> 同一套架構可套用所有分享型會議</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 要做的東西 -->
+  <div class="section">
+    <div class="section-label">具體要做哪些東西</div>
+
+    <div class="flow-box" style="margin-bottom:20px;">
+      <div class="flow-title">總共需要建立 4 個 Agent</div>
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <div class="flow-ftitle">Agent 1 ── 會議摘要</div>
+          <div class="flow-fdesc">輸入錄影逐字稿，自動產出重點摘要</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <div class="flow-ftitle">Agent 2 ── 考題生成</div>
+          <div class="flow-fdesc">根據會議內容自動出題（可開關，不是每場都需要）</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <div class="flow-ftitle">Agent 3 ── 會後信件</div>
+          <div class="flow-fdesc">整合摘要＋考題連結＋問卷連結＋錄影連結，產出信件草稿</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <div class="flow-ftitle">Agent 4A ── 業務表單評分</div>
+          <div class="flow-fdesc">自動讀取業務填寫的表單，依四個維度給分＋輸出燈號（案例分享會限定）</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:13px; color:var(--mid); margin-bottom:20px;">另外還需要評估考試要用 <strong>Moodle 現有平台</strong>還是<strong>自己建一個輕量系統</strong>——第一週你們研究後提案，再一起討論決定。</p>
+
+    <!-- Action Item 表 -->
+    <p style="font-size:14px; font-weight:600; color:var(--dark); margin-bottom:12px;">所有工作項目一覽（第一週討論後認領）</p>
+    <table class="action-table">
+      <thead>
+        <tr>
+          <th>工作項目</th>
+          <th>說明</th>
+          <th>需要的能力</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>通用架構設計</td>
+          <td>規劃整套系統的流程圖，定義不同會議類型對應哪些 Agent</td>
+          <td>
+            <span class="skill-tag">邏輯整理</span>
+            <span class="skill-tag">結構化思考</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Agent 1<br>摘要生成</td>
+          <td>設計 prompt，讓 AI 讀完逐字稿後自動產出好的摘要</td>
+          <td>
+            <span class="skill-tag">Prompt 設計</span>
+            <span class="skill-tag">文字判斷力</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Agent 2<br>考題出題</td>
+          <td>設計 prompt，讓 AI 根據會議內容出有意義的考試題目</td>
+          <td>
+            <span class="skill-tag">評量設計</span>
+            <span class="skill-tag">AI 邏輯設定</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Agent 3<br>信件草稿</td>
+          <td>設計信件模板，整合所有連結與摘要，產出可直接使用的草稿</td>
+          <td>
+            <span class="skill-tag">文件寫作</span>
+            <span class="skill-tag">模板設計</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Agent 4A<br>業務表單評分</td>
+          <td>設計評分邏輯，讓 AI 依四個維度自動給分，輸出綠／黃／紅燈號</td>
+          <td>
+            <span class="skill-tag">評分邏輯</span>
+            <span class="skill-tag">Prompt 工程</span>
+          </td>
+        </tr>
+        <tr>
+          <td>考試平台評估</td>
+          <td>研究 Moodle 功能 vs 自建系統，提出建議方案並說明理由</td>
+          <td>
+            <span class="skill-tag">系統評估</span>
+            <span class="skill-tag">技術可行性</span>
+          </td>
+        </tr>
+        <tr>
+          <td>評分統計視覺化</td>
+          <td>把業務評分結果整理成圖表，讓主管一眼看出誰是綠燈、誰需要加強</td>
+          <td>
+            <span class="skill-tag">資料整理</span>
+            <span class="skill-tag">圖表製作</span>
+          </td>
+        </tr>
+        <tr>
+          <td>使用說明文件</td>
+          <td>寫一份讓任何新人都看得懂的操作指南，說明每個 Agent 怎麼用</td>
+          <td>
+            <span class="skill-tag">清晰寫作</span>
+            <span class="skill-tag">流程說明</span>
+          </td>
+        </tr>
+        <tr>
+          <td>最終簡報製作<br>＋ CEO 發表</td>
+          <td>製作 10 頁以內的簡報，在第 8 週向 CEO 發表成果</td>
+          <td>
+            <span class="skill-tag">視覺排版</span>
+            <span class="skill-tag">口頭表達</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--mid); margin-top:8px;">👆 第一週和 Sophie 討論後，兩人一起決定誰負責哪幾項。</p>
+  </div>
+
+  <!-- 八週任務表 -->
+  <div class="section">
+    <div class="section-label">八週怎麼走</div>
+    <div class="week-list">
+
+      <div class="week-row">
+        <div class="week-num">第 1 週</div>
+        <div>
+          <div class="week-title">看懂現有流程 ＋ 討論分工</div>
+          <ul class="week-tasks">
+            <li>看 AIS 入門影片（兩人一起）</li>
+            <li>Sophie 帶你們走過一次完整的案例分享會流程</li>
+            <li>研究 Moodle 功能，評估考試平台要用哪個</li>
+            <li>畫出系統架構草圖，列出至少 3 種會議類型</li>
+            <li>討論並認領工作項目</li>
+          </ul>
+        </div>
+        <div class="week-report">
+          <strong>週報繳交</strong>
+          架構草圖 ＋ 考試平台提案 ＋ 確認分工
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">第 2 週</div>
+        <div>
+          <div class="week-title">設計每個 Agent 的規格</div>
+          <ul class="week-tasks">
+            <li>每個 Agent 的輸入是什麼、輸出是什麼、怎麼判斷</li>
+            <li>評分 Agent 的四個維度邏輯草稿</li>
+            <li>確認哪些會議要出考題、哪些不用（開關機制）</li>
+          </ul>
+        </div>
+        <div class="week-report">
+          <strong>週報繳交</strong>
+          各 Agent 規格書（一頁就好，說清楚即可）
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">第 3 週</div>
+        <div>
+          <div class="week-title">第一版 Agent 上線測試</div>
+          <ul class="week-tasks">
+            <li>在 AIS 建立 Agent，用真實分享會內容測試</li>
+            <li>完整跑一次：逐字稿 → 摘要 → 考題 → 信件草稿</li>
+            <li>業務表單評分 Agent 第一版測試</li>
+          </ul>
+        </div>
+        <div class="week-report">
+          <strong>週報繳交</strong>
+          第一版輸出截圖 ＋ 問題清單（哪裡不對）
+        </div>
+      </div>
+
+      <div class="week-row checkpoint">
+        <div class="week-num">第 4 週</div>
+        <div>
+          <div class="week-title">🔍 中期 Check-in（Sophie 看成果）</div>
+          <ul class="week-tasks">
+            <li>展示目前做好的東西</li>
+            <li>討論後半段要改什麼、加什麼</li>
+            <li>確認第二種會議類型要擴充哪個</li>
+          </ul>
+        </div>
+        <div class="week-report">
+          <strong>中期匯報</strong>
+          Live Demo ＋ 問題說明 ＋ 後四週計畫
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">第 5 週</div>
+        <div>
+          <div class="week-title">優化 ＋ 擴充第二種會議類型</div>
+          <ul class="week-tasks">
+            <li>根據第四週回饋調整 Agent 輸出品質</li>
+            <li>評分 Agent：測試多筆表單的評分一致性，完成燈號視覺化</li>
+            <li>把架構套到第二種會議類型</li>
+          </ul>
+        </div>
+        <div class="week-report">
+          <strong>週報繳交</strong>
+          評分一致性測試結果 ＋ 第二類型設計稿
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">第 6 週</div>
+        <div>
+          <div class="week-title">整合測試 ＋ 寫使用說明</div>
+          <ul class="week-tasks">
+            <li>模擬完整流程兩次（兩種會議類型各一次）</li>
+            <li>記錄哪些地方還需要人工介入</li>
+            <li>開始撰寫使用說明文件</li>
+          </ul>
+        </div>
+        <div class="week-report">
+          <strong>週報繳交</strong>
+          完整測試紀錄 ＋ 使用說明初稿
+        </div>
+      </div>
+
+      <div class="week-row">
+        <div class="week-num">第 7 週</div>
+        <div>
+          <div class="week-title">做簡報 ＋ 彩排</div>
+          <ul class="week-tasks">
+            <li>10 頁以內：問題是什麼 → 做了什麼 → 成果 → 以後能擴充到哪 → 省了多少時間</li>
+            <li>Sophie Pre-final Review</li>
+            <li>練習口頭發表</li>
+          </ul>
+        </div>
+        <div class="week-report">
+          <strong>週報繳交</strong>
+          簡報初稿
+        </div>
+      </div>
+
+      <div class="week-row checkpoint">
+        <div class="week-num">第 8 週</div>
+        <div>
+          <div class="week-title">🎤 CEO 正式發表</div>
+          <ul class="week-tasks">
+            <li>兩人分段報告：架構說明、Agent 設計邏輯、Live Demo、結論</li>
+            <li>20 分鐘（15 分報告 ＋ 5 分 Q&A）</li>
+            <li>CoE 保留成果，正式開始使用</li>
+          </ul>
+        </div>
+        <div class="week-report">
+          <strong>最終產出</strong>
+          Agent 套件 ＋ 使用說明 ＋ 簡報
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 幾件事先說清楚 -->
+  <div class="section">
+    <div class="section-label">幾件事先說清楚</div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-emoji">✍️</div>
+        <div class="tip-title">Agent 輸出是草稿</div>
+        <div class="tip-desc">所有 Agent 產出的東西，Sophie 都會看過才發出去。這不是失敗，這是正確的 AI 使用方式。</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-emoji">🎯</div>
+        <div class="tip-title">80% 就是成功</div>
+        <div class="tip-desc">不用做到完全自動化。能省掉大部分的手動工作，就算達成目標了。</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-emoji">📋</div>
+        <div class="tip-title">週報格式很簡單</div>
+        <div class="tip-desc">三個問題：這週做了什麼 ／ 遇到什麼問題 ／ 下週計畫。不用長，寫清楚就好。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 聯絡 -->
+  <div class="cta-box">
+    <h3>有問題就直接問 👇</h3>
+    <p>卡住不要自己悶，任何問題都可以找 Sophie。</p>
+    <div class="contact">✉️ sophie@profetai.com</div>
+  </div>
+
+</div>
+
+<script>
+  const rows = document.querySelectorAll('.week-row');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      }
+    });
+  }, { threshold: 0.05 });
+  rows.forEach(row => observer.observe(row));
+</script>
+
+</body>
+</html>
